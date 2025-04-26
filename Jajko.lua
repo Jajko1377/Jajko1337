@@ -39,8 +39,8 @@ local MainlTab = Window:CreateTab("Main", 119578730668589)
  local ShooterTab = Window:CreateTab("Shooter", 119578730668589)
  local OtherTab = Window:CreateTab("Other", 119578730668589)
 
- local Paragraph = MainlTab:CreateParagraph({Title = "--Discord", Content = "discord.gg/c7UfkMmnEs"})
- local Paragraph = MainlTab:CreateParagraph({Title = "--If you need help DM Ticket", Content = "discord.gg/c7UfkMmnEs"})
+ local Paragraph = MainlTab:CreateParagraph({Title = "--Discord", Content = "discord.gg/U3mYTmqdcB"})
+ local Paragraph = MainlTab:CreateParagraph({Title = "--If you need help DM Ticket", Content = "discord.gg/U3mYTmqdcB"})
  local Paragraph = MainlTab:CreateParagraph({Title = "--Credit To Everyone", Content = ""})
 
  local Button = GeneralTab:CreateButton({
