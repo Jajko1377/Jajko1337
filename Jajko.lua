@@ -1,7 +1,7 @@
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
-    Name = "Script Hub",
+    Name = "Script Hub Jajko1337",
     LoadingTitle = "Script Hub",
     LoadingSubtitle = "by _cykaaaa",
     ConfigurationSaving = {
@@ -30,13 +30,18 @@ Rayfield:Notify({
    Title = "Hub Jajko1337",
    Content = "discord.gg/c7UfkMmnEs",
    Duration = 6.5,
-   Image = "rewind",
+   Image = "119578730668589",
 })
+
+local MainlTab = Window:CreateTab("Main", 119578730668589)
  local GeneralTab = Window:CreateTab("General", 119578730668589)
  local EmoteTab = Window:CreateTab("Emote", 119578730668589)
  local ShooterTab = Window:CreateTab("Shooter", 119578730668589)
  local OtherTab = Window:CreateTab("Other", 119578730668589)
 
+ local Paragraph = MainlTab:CreateParagraph({Title = "--Discord", Content = "discord.gg/c7UfkMmnEs"})
+ local Paragraph = MainlTab:CreateParagraph({Title = "--If you need help DM _cykaaaa", Content = "discord - _cykaaaa"})
+ local Paragraph = MainlTab:CreateParagraph({Title = "--Credit To Everyone", Content = ""})
 
  local Button = GeneralTab:CreateButton({
     Name = "Inf Yield",
@@ -60,7 +65,7 @@ Rayfield:Notify({
  })
 
  local Button = GeneralTab:CreateButton({
-    Name = "Multi Game Script",
+    Name = "Other Game Scripts",
     Callback = function()
      loadstring(game:HttpGet("https://raw.githubusercontent.com/NukeVsCity/TheALLHACKLoader/main/NukeLoader"))()
     end,
@@ -81,7 +86,7 @@ Rayfield:Notify({
 })
 
 local Button = ShooterTab:CreateButton({
-    Name = "Aimlock",
+    Name = "Aimlock/re-login",
     Callback = function()
      local Aimbot = loadstring(game:HttpGet("https://raw.githubusercontent.com/Exunys/Aimbot-V3/main/src/Aimbot.lua"))()
      Aimbot.Load()
