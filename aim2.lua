@@ -1,13 +1,23 @@
+-- join discord bruh https://discord.gg/8jCD2cMFhs
+
+--// Cache
+
 local loadstring, game, getgenv, setclipboard = loadstring, game, getgenv, setclipboard
 
 --// Loaded check
 
 if getgenv().Aimbot then return end
 
+--// Load Aimbot V2 (Raw)
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Exunys/Aimbot-V2/main/Resources/Scripts/Raw%20Main.lua"))()
+
+--// Variables
+
 local Aimbot = getgenv().Aimbot
 local Settings, FOVSettings, Functions = Aimbot.Settings, Aimbot.FOVSettings, Aimbot.Functions
 
-local Library = loadstring(game:GetObjects("rbxassetid://119578730668589")[1].Source)() -- Pepsi's UI Library
+local Library = loadstring(game:GetObjects("rbxassetid://7657867786")[1].Source)() -- Pepsi's UI Library
 
 local Parts = {"Head", "HumanoidRootPart", "Torso", "Left Arm", "Right Arm", "Left Leg", "Right Leg", "LeftHand", "RightHand", "LeftLowerArm", "RightLowerArm", "LeftUpperArm", "RightUpperArm", "LeftFoot", "LeftLowerLeg", "UpperTorso", "LeftUpperLeg", "RightFoot", "RightLowerLeg", "LowerTorso", "RightUpperLeg"}
 
@@ -16,9 +26,9 @@ local Parts = {"Head", "HumanoidRootPart", "Torso", "Left Arm", "Right Arm", "Le
 Library.UnloadCallback = Functions.Exit
 
 local MainFrame = Library:CreateWindow({
-	Name = "Aimlock",
+	Name = "Aimbot V2",
 	Themeable = {
-		Image = "119578730668589",
+		Image = "7059346386",
 		Info = "Made by Exunys\nPowered by Pepsi's UI Library",
 		Credit = false
 	},
@@ -283,7 +293,7 @@ FunctionsSection:AddButton({
 })
 
 FunctionsSection:AddButton({
-	Name = "Copy discord",
+	Name = "Discord",
 	Callback = function()
 		setclipboard("https://discord.gg/8jCD2cMFhs")
 	end
