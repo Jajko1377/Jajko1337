@@ -1,0 +1,3 @@
+--Key - fzg02cye8wk3n1rbv2yf3joq55z6q3j7t
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Jajko1377/Jajko1337/refs/heads/main/Jajko.lua"))()
