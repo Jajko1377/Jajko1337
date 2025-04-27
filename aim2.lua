@@ -4,12 +4,6 @@ local loadstring, game, getgenv, setclipboard = loadstring, game, getgenv, setcl
 
 if getgenv().Aimbot then return end
 
---// Load Aimbot V2 (Raw)
-
-loadstring(game:HttpGet("https://raw.githubusercontent.com/Exunys/Aimbot-V2/main/Resources/Scripts/Raw%20Main.lua"))()
-
---// Variables
-
 local Aimbot = getgenv().Aimbot
 local Settings, FOVSettings, Functions = Aimbot.Settings, Aimbot.FOVSettings, Aimbot.Functions
 
