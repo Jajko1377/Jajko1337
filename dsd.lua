@@ -180,7 +180,7 @@ IncreaseCorner.Parent = IncreaseRadius
 local RadiusDisplay = Instance.new("TextLabel")
 RadiusDisplay.Size = UDim2.new(0.4, 0, 0, 35)
 RadiusDisplay.Position = UDim2.new(0.3, 0, 0.6, 0)
-RadiusDisplay.Text = "Radius: 100"
+RadiusDisplay.Text = "Radius: 50"
 RadiusDisplay.BackgroundColor3 = Color3.fromRGB(255, 255, 0) -- Yellow
 RadiusDisplay.TextColor3 = Color3.fromRGB(0, 0, 0) -- White
 RadiusDisplay.Font = Enum.Font.Fondamento
@@ -401,21 +401,21 @@ local content, isReady = Players:GetUserThumbnailAsync(userId, thumbType, thumbS
 
 StarterGui:SetCore("SendNotification", {
     Title = "Script Hub Jajko1337",
-    Text = "enjoy",
+    Text = "Script Hub Jajko1337",
     Icon = content,
     Duration = 5
 })
 
 StarterGui:SetCore("SendNotification", {
     Title = "Credits",
-    Text = "Original By Yumm Scriptblox",
+    Text = "Script Hub Jajko1337",
     Icon = content,
     Duration = 5
 })
 
 StarterGui:SetCore("SendNotification", {
     Title = "Credits",
-    Text = "Edited By lukas",
+    Text = "Script Hub Jajko1337",
     Icon = content,
     Duration = 5
 })
