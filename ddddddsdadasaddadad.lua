@@ -19,9 +19,9 @@ allowshiftlock = true --adds shiftlock to patchma rig
 ctrltp = true --adds control click tp
 placeholders = true --adds transparent parts showing your hats when you don't have real ones
 clickfling = false --adds click flinging regardless of attacks
-highlightflingtargets = true --highlight fling
+highlightflingtargets = false --highlight fling
 discharscripts = true --disable character scripts
-flingchangestate = true --fling with whole body
+flingchangestate = false --fling with whole body
 hidedeatheffect = true --hides the red damage border when you die (respawn)
 respawntp = 3 --respawn tp mode
 -- 0 - stay at spawn
