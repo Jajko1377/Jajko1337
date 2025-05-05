@@ -22,7 +22,7 @@ clickfling = false --adds click flinging regardless of attacks
 highlightflingtargets = false --highlight fling
 discharscripts = false --disable character scripts
 flingchangestate = false --fling with whole body
-hidedeatheffect = false --hides the red damage border when you die (respawn)
+hidedeatheffect = true --hides the red damage border when you die (respawn)
 respawntp = 3 --respawn tp mode
 -- 0 - stay at spawn
 -- 1 - randomtp close
