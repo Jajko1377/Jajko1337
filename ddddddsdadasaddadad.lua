@@ -16,13 +16,13 @@ https://discord.com/invite/aEZpBEHgMT
 permadeath = false --adds permanent death (no respawning), see #supported-executors channel for executors that work with this
 fling = false --toggle fling
 allowshiftlock = true --adds shiftlock to patchma rig
-ctrltp = true --adds control click tp
-placeholders = true --adds transparent parts showing your hats when you don't have real ones
+ctrltp = false --adds control click tp
+placeholders = false --adds transparent parts showing your hats when you don't have real ones
 clickfling = false --adds click flinging regardless of attacks
 highlightflingtargets = false --highlight fling
-discharscripts = true --disable character scripts
+discharscripts = false --disable character scripts
 flingchangestate = false --fling with whole body
-hidedeatheffect = true --hides the red damage border when you die (respawn)
+hidedeatheffect = false --hides the red damage border when you die (respawn)
 respawntp = 3 --respawn tp mode
 -- 0 - stay at spawn
 -- 1 - randomtp close
