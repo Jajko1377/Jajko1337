@@ -1,0 +1,41 @@
+--[[
+_________                       _____            ___________________
+__  ____/__________________________(_)_______    ___  ____/__  ____/
+_  / __ _  _ \_  __ \  _ \_  ___/_  /__  ___/    __  /_   __  __/   
+/ /_/ / /  __/  / / /  __/(__  )_  / _(__  )     _  __/   _  /___   
+\____/  \___//_/ /_/\___//____/ /_/  /____/      /_/      /_____/   							
+
+by rqz					
+https://discord.com/invite/aEZpBEHgMT
+]]--
+
+--====================================--
+--           FDless Options           --
+--====================================--
+
+permadeath = true --adds permanent death (no respawning), see #supported-executors channel for executors that work with this
+fling = false --toggle fling
+allowshiftlock = true --adds shiftlock to patchma rig
+ctrltp = false --adds control click tp
+placeholders = false --adds transparent parts showing your hats when you don't have real ones
+clickfling = false --adds click flinging regardless of attacks
+highlightflingtargets = false --highlight fling
+discharscripts = false --disable character scripts
+flingchangestate = false --fling with whole body
+hidedeatheffect = true --hides the red damage border when you die (respawn)
+respawntp = 3 --respawn tp mode
+-- 0 - stay at spawn
+-- 1 - randomtp close
+-- 2 - behind fake character
+-- 3 - hide body
+breakjointsmethod = 1 --breakjoints mode
+-- 1 - health+breakjoints (the most support)
+-- 2 - health or breakjoints
+-- 3 - breakjoints
+simrad = true --sets simulation radius
+
+--==========================================================================================================================--
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/GenesisFE/Genesis/main/Obfuscations/Gale%20Fighter"))()
+
+--==========================================================================================================================--
