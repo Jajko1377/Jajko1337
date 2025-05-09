@@ -118,50 +118,74 @@ coroutine.wrap(QCJQJL_fake_script)()
 local plr = game.Players.LocalPlayer
 local toolName = "Fake murder"
 
+-- ID анимаций
+local animationIds = {
+    "rbxassetid://746398327",
+    "rbxassetid://582384156",
+    "rbxassetid://698251653",
+    "rbxassetid://674871189"
+}
+
 -- Создаем инструмент и настраиваем его
 local function createTool()
     local tool = Instance.new("Tool")
     tool.Name = toolName
     tool.GripPos = Vector3.new(0, 0, 0)
-    tool.CanBeDropped = false -- Чтобы нельзя было выбросить
-    
-    local handle = Instance.new("Part", tool)
+    tool.CanBeDropped = false
+
+    local handle = Instance.new("Part")
     handle.Name = "Handle"
     handle.Size = Vector3.new(0, 0, 0)
-    handle.Transparency = 1 -- Делаем невидимым
-    
-    local anim = Instance.new("Animation", tool)
-    anim.AnimationId = "rbxassetid://746398327"
-    
+    handle.Transparency = 1
+    handle.Parent = tool
+
+    -- Добавляем анимации в инструмент
+    for _, animId in ipairs(animationIds) do
+        local anim = Instance.new("Animation")
+        anim.AnimationId = animId
+        anim.Parent = tool
+    end
+
     return tool
 end
 
 -- Добавляем инструмент в инвентарь
 local function giveTool()
     if not plr:FindFirstChild("Backpack") then return end
-    
-    -- Удаляем старый инструмент (если есть)
+
     local oldTool = plr.Backpack:FindFirstChild(toolName)
     if oldTool then oldTool:Destroy() end
-    
-    -- Создаем новый и кладем в инвентарь
+
     local tool = createTool()
     tool.Parent = plr.Backpack
-    
-    -- Загружаем анимацию
+
     local char = plr.Character or plr.CharacterAdded:Wait()
     local humanoid = char:WaitForChild("Humanoid")
-    local animTrack = humanoid:LoadAnimation(tool:FindFirstChildOfClass("Animation"))
-    
+
+    local animTracks = {}
+    for _, anim in pairs(tool:GetChildren()) do
+        if anim:IsA("Animation") then
+            table.insert(animTracks, humanoid:LoadAnimation(anim))
+        end
+    end
+
     local db = true
     local da = false
-    
-    -- Обработчик удара
+    local currentAnimIndex = 1
+
     tool.Equipped:Connect(function()
         tool.Activated:Connect(function()
             if db then
                 db = false
+                local animTrack = animTracks[currentAnimIndex]
                 animTrack:Play()
+
+                -- Увеличиваем индекс анимации (и сбрасываем при переполнении)
+                currentAnimIndex += 1
+                if currentAnimIndex > #animTracks then
+                    currentAnimIndex = 1
+                end
+
                 da = true
                 task.wait(0.1)
                 da = false
@@ -169,8 +193,7 @@ local function giveTool()
             end
         end)
     end)
-    
-    -- Обработчик касания
+
     tool:FindFirstChild("Handle").Touched:Connect(function(hit)
         if da and hit.Parent:FindFirstChild("Humanoid") then
             local victim = game.Players:GetPlayerFromCharacter(hit.Parent)
@@ -186,6 +209,7 @@ end
 -- Даем инструмент при загрузке и после смерти
 giveTool()
 plr.CharacterAdded:Connect(function()
-    task.wait(1) -- Ждем, пока появится Backpack
+    task.wait(1)
     giveTool()
 end)
+
