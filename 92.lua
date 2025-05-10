@@ -4,7 +4,7 @@ local win = lib:Window("AdvanceTech | Universal Hitbox | v1.0 ", Color3.fromRGB(
 local tab = win:Tab("Main")
 
 local hitboxEnabled = false
-local noCollisionEnabled = false
+local noCollisionEnabled = true
 local hitbox_original_properties = {}
 local hitboxSize = 5
 local hitboxTransparency = 8
