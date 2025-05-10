@@ -149,14 +149,7 @@ tab:Slider("Hitbox Size", 1, 50, 5, function(value)
     end
 end)
 
-tab:Slider("Hitbox Transparency", 1, 10, 6, function(value)
-    hitboxTransparency = value
-    if hitboxEnabled then
-        updateHitboxes()
-    end
-end)
-
-tab:Dropdown("Team Check", {"FFA", "Team-Based", "Everyone"}, function(value)
+tab:Dropdown("Team Check", {"All", "Team-Based"}, function(value)
     teamCheck = value
     if hitboxEnabled then
         updateHitboxes()
