@@ -142,7 +142,7 @@ tab:Toggle("Enable Hitbox", false, function(enabled)
     end
 end)
 
-tab:Slider("Hitbox Size", 1, 50, 5, function(value)
+tab:Slider("Hitbox Size", 1, 1000, 5, function(value)
     hitboxSize = value
     if hitboxEnabled then
         updateHitboxes()
