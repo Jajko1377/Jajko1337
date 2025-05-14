@@ -117,7 +117,7 @@ coroutine.wrap(QCJQJL_fake_script)()
 
 local plr = game.Players.LocalPlayer
 local UIS = game:GetService("UserInputService")
-local toolName = "knife"
+local toolName = "Fake murder"
 
 local leftClickAnimations = {
     "rbxassetid://1957890538",
@@ -187,11 +187,13 @@ local function giveTool()
     local db = true
     local da = false
     local currentLeftIndex = 1
+    local equipped = false
 
     tool.Equipped:Connect(function()
+        equipped = true
 
         tool.Activated:Connect(function()
-            if db then
+            if equipped and db then
                 db = false
                 local animTrack = leftAnimTracks[currentLeftIndex]
                 animTrack:Play()
@@ -207,30 +209,34 @@ local function giveTool()
                 db = true
             end
         end)
+    end)
 
-        UIS.InputBegan:Connect(function(input, gameProcessed)
-            if gameProcessed then return end
-            if input.UserInputType == Enum.UserInputType.MouseButton2 and db then
-                db = false
+    tool.Unequipped:Connect(function()
+        equipped = false
+    end)
 
+    UIS.InputBegan:Connect(function(input, gameProcessed)
+        if not equipped then return end
+        if gameProcessed then return end
+        if input.UserInputType == Enum.UserInputType.MouseButton2 and db then
+            db = false
 
-                if rightAnimTracks[1] then
-                    rightAnimTracks[1]:Play()
-                    da = true
-                    task.wait(rightAnimTracks[1].Length > 0 and rightAnimTracks[1].Length or 0.5)
-                    da = false
-                end
-
-                if rightAnimTracks[2] then
-                    rightAnimTracks[2]:Play()
-                    da = true
-                    task.wait(rightAnimTracks[2].Length > 0 and rightAnimTracks[2].Length or 0.5)
-                    da = false
-                end
-
-                db = true
+            if rightAnimTracks[1] then
+                rightAnimTracks[1]:Play()
+                da = true
+                task.wait(rightAnimTracks[1].Length > 0 and rightAnimTracks[1].Length or 0.5)
+                da = false
             end
-        end)
+
+            if rightAnimTracks[2] then
+                rightAnimTracks[2]:Play()
+                da = true
+                task.wait(rightAnimTracks[2].Length > 0 and rightAnimTracks[2].Length or 0.5)
+                da = false
+            end
+
+            db = true
+        end
     end)
 
     tool:FindFirstChild("Handle").Touched:Connect(function(hit)
@@ -244,7 +250,6 @@ local function giveTool()
         end
     end)
 end
-
 
 giveTool()
 plr.CharacterAdded:Connect(function()
