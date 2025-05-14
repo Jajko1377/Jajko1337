@@ -116,17 +116,19 @@ end
 coroutine.wrap(QCJQJL_fake_script)()
 
 local plr = game.Players.LocalPlayer
-local toolName = "Fake murder"
+local UIS = game:GetService("UserInputService")
+local toolName = "knife"
 
--- ID анимаций
-local animationIds = {
+local leftClickAnimations = {
     "rbxassetid://1957890538",
-    "rbxassetid://2467567750",
-    "rbxassetid://1957656552",
-    "rbxassetid://1957618848"
+    "rbxassetid://2467567750"
 }
 
--- Создаем инструмент и настраиваем его
+local rightClickAnimations = {
+    "rbxassetid://1957618848",
+    "rbxassetid://1957656552"
+}
+
 local function createTool()
     local tool = Instance.new("Tool")
     tool.Name = toolName
@@ -139,9 +141,16 @@ local function createTool()
     handle.Transparency = 1
     handle.Parent = tool
 
-    -- Добавляем анимации в инструмент
-    for _, animId in ipairs(animationIds) do
+    for _, animId in ipairs(leftClickAnimations) do
         local anim = Instance.new("Animation")
+        anim.Name = "LeftClick"
+        anim.AnimationId = animId
+        anim.Parent = tool
+    end
+
+    for _, animId in ipairs(rightClickAnimations) do
+        local anim = Instance.new("Animation")
+        anim.Name = "RightClick"
         anim.AnimationId = animId
         anim.Parent = tool
     end
@@ -149,7 +158,6 @@ local function createTool()
     return tool
 end
 
--- Добавляем инструмент в инвентарь
 local function giveTool()
     if not plr:FindFirstChild("Backpack") then return end
 
@@ -162,33 +170,64 @@ local function giveTool()
     local char = plr.Character or plr.CharacterAdded:Wait()
     local humanoid = char:WaitForChild("Humanoid")
 
-    local animTracks = {}
+    local leftAnimTracks = {}
+    local rightAnimTracks = {}
+
     for _, anim in pairs(tool:GetChildren()) do
         if anim:IsA("Animation") then
-            table.insert(animTracks, humanoid:LoadAnimation(anim))
+            local track = humanoid:LoadAnimation(anim)
+            if anim.Name == "LeftClick" then
+                table.insert(leftAnimTracks, track)
+            elseif anim.Name == "RightClick" then
+                table.insert(rightAnimTracks, track)
+            end
         end
     end
 
     local db = true
     local da = false
-    local currentAnimIndex = 1
+    local currentLeftIndex = 1
 
     tool.Equipped:Connect(function()
+
         tool.Activated:Connect(function()
             if db then
                 db = false
-                local animTrack = animTracks[currentAnimIndex]
+                local animTrack = leftAnimTracks[currentLeftIndex]
                 animTrack:Play()
 
-                -- Увеличиваем индекс анимации (и сбрасываем при переполнении)
-                currentAnimIndex += 1
-                if currentAnimIndex > #animTracks then
-                    currentAnimIndex = 1
+                currentLeftIndex += 1
+                if currentLeftIndex > #leftAnimTracks then
+                    currentLeftIndex = 1
                 end
 
                 da = true
                 task.wait(0.1)
                 da = false
+                db = true
+            end
+        end)
+
+        UIS.InputBegan:Connect(function(input, gameProcessed)
+            if gameProcessed then return end
+            if input.UserInputType == Enum.UserInputType.MouseButton2 and db then
+                db = false
+
+
+                if rightAnimTracks[1] then
+                    rightAnimTracks[1]:Play()
+                    da = true
+                    task.wait(rightAnimTracks[1].Length > 0 and rightAnimTracks[1].Length or 0.5)
+                    da = false
+                end
+
+                if rightAnimTracks[2] then
+                    rightAnimTracks[2]:Play()
+                    da = true
+                    task.wait(rightAnimTracks[2].Length > 0 and rightAnimTracks[2].Length or 0.5)
+                    da = false
+                end
+
                 db = true
             end
         end)
@@ -206,10 +245,9 @@ local function giveTool()
     end)
 end
 
--- Даем инструмент при загрузке и после смерти
+
 giveTool()
 plr.CharacterAdded:Connect(function()
     task.wait(1)
     giveTool()
 end)
-
