@@ -123,8 +123,7 @@ local animationIds = {
     "rbxassetid://1957890538",
     "rbxassetid://2467567750",
     "rbxassetid://1957656552",
-    "rbxassetid://1957618848",
-    "rbxassetid://15478370930"
+    "rbxassetid://1957618848"
 }
 
 -- Создаем инструмент и настраиваем его
