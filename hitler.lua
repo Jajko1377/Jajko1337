@@ -1,7 +1,7 @@
 local plr = game.Players.LocalPlayer
 local tool = Instance.new("Tool", plr.Backpack)
 tool.GripPos = Vector3.new(0.1, -1, 0)
-tool.Name = "Hitler"
+tool.Name = "H1tler"
 
 local handle = Instance.new("Part", tool)
 handle.Name = "Handle"
