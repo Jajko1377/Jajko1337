@@ -1,11 +1,11 @@
 local plr = game.Players.LocalPlayer
 local tool = Instance.new("Tool", plr.Backpack)
 tool.GripPos = Vector3.new(0.1, -1, 0)
-tool.Name = "Sword"
+tool.Name = "Hitler"
 
 local handle = Instance.new("Part", tool)
 handle.Name = "Handle"
-handle.Size = Vector3.new(0.4, 4, 0.4)
+handle.Size = Vector3.new(0.0, 0, 0.0)
 
 local animation = Instance.new("Animation", tool)
 animation.AnimationId = "rbxassetid://698251653"
