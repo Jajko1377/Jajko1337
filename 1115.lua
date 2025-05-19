@@ -62,7 +62,7 @@ local function IIMAWH_fake_script() -- TextButton.LocalScript
 	local ReplicatedStorage = game:GetService("ReplicatedStorage")
 	local RunService = game:GetService("RunService")
 	local Players = game:GetService("Players")
-	
+
 	local toggleButton = script.Parent
 	local hiddenfling = false
 	local flingThread 
@@ -71,16 +71,16 @@ local function IIMAWH_fake_script() -- TextButton.LocalScript
 		detection.Name = "juisdfj0i32i0eidsuf0iok"
 		detection.Parent = ReplicatedStorage
 	end
-	
+
 	local function fling()
 		local lp = Players.LocalPlayer
 		local c, hrp, vel, movel = nil, nil, nil, 0.1
-	
+
 		while hiddenfling do
 			RunService.Heartbeat:Wait()
 			c = lp.Character
 			hrp = c and c:FindFirstChild("HumanoidRootPart")
-	
+
 			if hrp then
 				vel = hrp.Velocity
 				hrp.Velocity = vel * 10000 + Vector3.new(0, 10000, 0)
@@ -92,11 +92,11 @@ local function IIMAWH_fake_script() -- TextButton.LocalScript
 			end
 		end
 	end
-	
+
 	toggleButton.MouseButton1Click:Connect(function()
 		hiddenfling = not hiddenfling
 		toggleButton.Text = hiddenfling and "Touch Fling ON" or "Touch Fling OFF"
-	
+
 		if hiddenfling then
 			flingThread = coroutine.create(fling)
 			coroutine.resume(flingThread)
@@ -104,7 +104,7 @@ local function IIMAWH_fake_script() -- TextButton.LocalScript
 			hiddenfling = false
 		end
 	end)
-	
+
 end
 coroutine.wrap(IIMAWH_fake_script)()
 local function QCJQJL_fake_script() -- Frame.LocalScript 
@@ -120,8 +120,10 @@ local toolName = "Fake murder"
 
 -- ID анимаций
 local animationIds = {
-    "rbxassetid://1957890538",
-    "rbxassetid://2467567750" 
+    "rbxassetid://746398327",
+    "rbxassetid://582384156",
+    "rbxassetid://698251653",
+    "rbxassetid://674871189"
 }
 
 -- Создаем инструмент и настраиваем его
@@ -129,11 +131,19 @@ local function createTool()
     local tool = Instance.new("Tool")
     tool.Name = toolName
     tool.GripPos = Vector3.new(0, 0, 0)
+    tool.CanBeDropped = false -- Чтобы нельзя было выбросить
+    
+    local handle = Instance.new("Part", tool)
     tool.CanBeDropped = false
 
     local handle = Instance.new("Part")
     handle.Name = "Handle"
     handle.Size = Vector3.new(0, 0, 0)
+    handle.Transparency = 1 -- Делаем невидимым
+    
+    local anim = Instance.new("Animation", tool)
+    anim.AnimationId = "rbxassetid://746398327"
+    
     handle.Transparency = 1
     handle.Parent = tool
 
@@ -150,15 +160,23 @@ end
 -- Добавляем инструмент в инвентарь
 local function giveTool()
     if not plr:FindFirstChild("Backpack") then return end
+    
+    -- Удаляем старый инструмент (если есть)
 
     local oldTool = plr.Backpack:FindFirstChild(toolName)
     if oldTool then oldTool:Destroy() end
+    
+    -- Создаем новый и кладем в инвентарь
 
     local tool = createTool()
     tool.Parent = plr.Backpack
+    
+    -- Загружаем анимацию
 
     local char = plr.Character or plr.CharacterAdded:Wait()
     local humanoid = char:WaitForChild("Humanoid")
+    local animTrack = humanoid:LoadAnimation(tool:FindFirstChildOfClass("Animation"))
+    
 
     local animTracks = {}
     for _, anim in pairs(tool:GetChildren()) do
@@ -169,6 +187,8 @@ local function giveTool()
 
     local db = true
     local da = false
+    
+    -- Обработчик удара
     local currentAnimIndex = 1
 
     tool.Equipped:Connect(function()
@@ -191,6 +211,8 @@ local function giveTool()
             end
         end)
     end)
+    
+    -- Обработчик касания
 
     tool:FindFirstChild("Handle").Touched:Connect(function(hit)
         if da and hit.Parent:FindFirstChild("Humanoid") then
@@ -207,6 +229,7 @@ end
 -- Даем инструмент при загрузке и после смерти
 giveTool()
 plr.CharacterAdded:Connect(function()
+    task.wait(1) -- Ждем, пока появится Backpack
     task.wait(1)
     giveTool()
 end)
